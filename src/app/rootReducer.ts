@@ -1,9 +1,21 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from "redux";
+import { tasksReducer } from "../features/tasks/tasks.reducers";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import { tasksReducer } from '../features/tasks/tasks.reducers'
+const rootPersistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["tasks"], 
+};
 
-export const rootReducer =combineReducers({
-    tasks : tasksReducer
-})
+const appReducer = combineReducers({
+  tasks: tasksReducer,
+});
 
-export type RootState =ReturnType<typeof rootReducer>
+export const rootReducer = persistReducer(
+  rootPersistConfig,
+  appReducer
+);
+
+export type RootState = ReturnType<typeof rootReducer>;

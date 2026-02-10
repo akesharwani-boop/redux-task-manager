@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { loadTasks } from "./features/tasks/tasks.thunks";
+// import { loadTasks } from "./features/tasks/tasks.thunks";
 import {
   taskAdded,
   taskDeleted,
@@ -12,9 +12,9 @@ function App() {
   const { items, status } = useAppSelector((state) => state.tasks);
   const [title, setTitle] = useState("");
 
-  useEffect(() => {
-    dispatch(loadTasks());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadTasks());
+  // }, [dispatch]);
 
   const addTask = () => {
     if (!title.trim()) return;
